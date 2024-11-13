@@ -1,18 +1,526 @@
 ---
-title: "My Presentation"
-author: "Joel Nitta"
 format:
   revealjs:
     incremental: false
     css: styles.css
 execute: 
   echo: true
+  cache: true
+bibliography: references.yaml
+nocite: |
+  @*
 ---
 
-## Amazing content
+```{r}
+#| label: setup
+#| include: false
 
-ipsum lorem
+library(tidyverse)
+library(glue)
 
-## More amazing content
+source(here::here("R/functions.R"))
+```
 
-blip blop
+# An updated floristic map of the world
+
+Liu, Y., Xu, X., Dimitrov, D. *et al*. *Nat Commun* **14**, 2990 (2023). <https://doi.org/10.1038/s41467-023-38375-y>
+
+英論発表 2024-11-12
+
+ニッタ ジョエル
+
+# 背景
+
+## 著者
+
+![](images/author_list.png)
+
+![](images/equal_contrib.png)
+
+---
+
+### Yunpeng Liu
+  - Peking University, China
+
+---
+
+```{r}
+#| echo: false
+#| label: yunpeng-liu-wordcloud
+#| fig-cap: !expr y_liu_caption
+
+y_liu_works <- works_from_orcid("0000-0001-6188-3511")
+n_works <- nrow(y_liu_works)
+y_liu_caption <- glue("Yunpeng Liuの研究テーマ。{n_works}件の論文を基に解析。")
+orcid_to_wordcloud(works = y_liu_works)
+```
+
+---
+
+### Xiaoting Xu
+  - Peking University, China
+  - Sichuan University, China
+
+---
+
+```{r}
+#| echo: false
+#| label: xiaoting-xu-wordcloud
+#| fig-cap: !expr x_xu_caption
+
+x_xu_works <- works_from_orcid("https://orcid.org/0000-0001-8126-614X")
+n_works <- nrow(x_xu_works)
+x_xu_caption <- glue("Xiaoting Xuの研究テーマ。{n_works}件の論文を基に解析。")
+orcid_to_wordcloud(works = x_xu_works)
+```
+
+---
+
+### Dimitar Dimitrov
+
+:::: {.columns}
+
+::: {.column width="80%"}
+- [University of Bergen, Norway](https://www4.uib.no/en/find-employees/Dimitar.Stefanov.Dimitrov)
+
+> I am an evolutionary biologist with a background in arthropod systematics and evolution with a specific focus on **spiders**. Recently the taxonomic scope of my work has has been gradually expanding to include more branches of the Tree of life such as **vascular plants** and vertebrates. 
+:::
+
+::: {.column width="20%"}
+![](https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=mfemh8gAAAAJ&citpid=2)
+:::
+
+::::
+
+---
+
+```{r}
+#| echo: false
+#| label: dimitar-dimitrov-wordcloud
+#| fig-cap: !expr d_dimitrov_caption
+
+d_dimitrov_works <- works_from_orcid("0000-0001-5830-5702")
+n_works <- nrow(d_dimitrov_works)
+d_dimitrov_caption <- glue("Dimitar Dimitrovの研究テーマ。{n_works}件の論文を基に解析。")
+orcid_to_wordcloud(works = d_dimitrov_works)
+```
+
+---
+
+### Dimitar Dimitrov
+
+:::: {.columns}
+
+::: {.column width="80%"}
+- [University of Bergen, Norway](https://www4.uib.no/en/find-employees/Dimitar.Stefanov.Dimitrov)
+- [Google Scholar](https://scholar.google.com/citations?user=mfemh8gAAAAJ)で60件以上の論文
+
+[An update of Wallace’s zoogeographic regions of the world](https://www.science.org/doi/abs/10.1126/science.1228282)
+BG Holt, JP Lessard, MK Borregaard, SA Fritz, MB Araújo, D Dimitrov, et al.  
+2013. *Science* 339, 74-78
+:::
+
+::: {.column width="20%"}
+![](https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=mfemh8gAAAAJ&citpid=2)
+:::
+
+::::
+
+
+## Biotic regionalizationとは？
+
+- 様な地域のFlora（植物相）を基に世界を大きくグループ分けすること
+
+- 保全の目的設定や植物の進化を理解する上で大事
+
+## ダーウィン
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Darwin's voyage on the Beagle (1831–1836) led him to his theory on natural selection
+
+:::
+
+::: {.column width="50%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Voyage_of_the_Beagle-en.svg/2560px-Voyage_of_the_Beagle-en.svg.png)
+:::
+
+::::
+
+## Wallace
+
+:::: {.columns}
+::: {.column width="50%"}
+- published global map of zoological realms based on taxonomic similarity of animal families across regions (1876)
+:::
+
+::: {.column width="50%"}
+![](https://upload.wikimedia.org/wikipedia/commons/2/2c/Wallace03.jpg)
+:::
+
+::::
+
+## Wallace's Line
+
+::: {.columns}
+::: {.column}
+- 特に、東南アジアとオーストラリアの間に見られる動物が異なるから、これを境目として注目した
+:::
+::: {.column}
+![](https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638892509/EducationHub/photos/the-wallace-and-weber-lines.jpg)
+:::
+:::
+
+## Takhtajan's regions
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Most widely used global regionalization from ca. 1970 - 2000
+
+- Based on floras
+
+- 6 kingdoms
+
+- 35 regions
+:::
+
+::: {.column width="50%"}
+![](images/takhtajan_map.png)
+
+::: {.tiny}
+<https://drpaulkeddy.com/wp-content/uploads/2020/12/keddy-2020-world-floristic-regions-in-cba-bulletin.pdf>
+:::
+:::
+
+::::
+
+## Classic bioregionalizations were ad-hoc
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Researchers defined regions based on qualitative similarities
+
+- Did not employ a consistent, quantitative method
+:::
+
+::: {.column width="50%"}
+![](https://i.ytimg.com/vi/BUC-klQd5z0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLASDZRVdT1a5gLhLWgLoI7m6hAY9Q)
+
+::: {.tiny}
+<https://i.ytimg.com/vi/BUC-klQd5z0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLASDZRVdT1a5gLhLWgLoI7m6hAY9Q>
+:::
+
+:::
+
+::::
+
+## Classic methods largely depended on endemism
+
+> [North American Atlantic Regionの特徴として] Endemic families Hydrastidaceae and Leitneriaceae, no fewer than a hundred endemic genera (including Sanguinaria, Sarracenia, Dirca, Neviusia, Hudsonia, Dionaea, Yeatesia, Pleea, Uvularia) and numerous endemic species.
+
+- Takhtajan 1969, p. 244
+
+## Modern methods are quantitative
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Taxonomic beta distances (how many species are shared in common between two areas?)
+
+- Recently, also use phylogenetic beta distances (how much of the tree is shared in common between two areas?)
+:::
+
+::: {.column width="50%"}
+![](images/salazar_mol-ecol_2015.png)
+
+::: {.small}
+[@Salazar2015]
+:::
+
+:::
+
+::::
+
+## 本研究の目的
+
+:::: {.columns}
+
+::: {.column width="40%"}
+- **被子植物**の**属**の網羅的なサンプリング（85%）を用いて、**系統的**および**学名的**な手法で主な植物地域を再検討すること
+
+:::
+
+::: {.column width="60%"}
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flower_poster_2.jpg/1920px-Flower_poster_2.jpg){height="450px"}  
+<https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flower_poster_2.jpg/1920px-Flower_poster_2.jpg>{.tiny}
+
+:::
+
+::::
+
+## 方法
+
+### データ
+
+
+
+# 結果
+
+## 8つの主な植物地域
+
+
+
+![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig1_HTML.png)
+
+::: {.small}
+Fig. 1. **a** Boundaries of the eight floristic realms and 16 sub-realms are shown in solid and dashed lines, respectively. **b** The unrooted dendrogram depicts the relationships among floristic realms evaluated using UPGMA clustering method based on phylogenetic beta diversity between realms. The scale bar in the dendrogram shows the dissimilarity between realms. **c** The scatter plot shows the dissimilarities in the phylogenetic compositions between different geographic standard units (GSU) generated using non-metric multidimensional scaling (NMDS) ordination.
+:::
+
+## 2 super-realms: Gondwanan and Laurasian
+
+![](images/fig_1_super-realms.png)
+
+## ゴンドワナとローラシア大陸
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Laurasia-Gondwana.svg/2560px-Laurasia-Gondwana.svg.png)
+
+::: {.medium}
+
+2億年前（三畳紀）の世界図 : ゴンドワナ大陸は南半球を中心に広がっていた。北方はローラシア大陸
+
+:::
+
+## Takhtajanとの比較
+
+![Fig S11. Comparison our floristic realms and sub-realms with Takhtajan’s floristic map (Takhtajan 1986)](images/takhtajan_comparison_annotated.png)
+
+---
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Paleotropical kingdomが二つに分かれる
+- Antarctic kingdomが二つに分かれる
+- Saharo-Arabian realmが新たに認められる
+- Cape kingdomがなくなる
+:::
+
+::: {.column width="50%"}
+![Fig S11. Comparison our floristic realms and sub-realms with Takhtajan’s floristic map (Takhtajan 1986)](images/takhtajan_comparison_annotated.png)
+:::
+
+::::
+
+## 系統的地域と分類学的地域の差が小さい
+
+![Fig S10. The map and dendrograms of realms based on taxonomic
+beta diversity.](images/fig_s_10.png)
+
+---
+
+![Fig 1. 系統的地域](images/fig_1_map.png){height="250px"}
+
+![Fig S10. 分類学的地域](images/fig_s_10_map.png){height="250px"}
+
+## メキシコについて
+
+- 分類学的地域ではパタゴニアと一緒になるが、系統的地域ではNeotropics
+  - 著者が言うには、**気候**の影響による
+
+> The regionalization based on taxonomic beta diversity may be more strongly influenced by **contemporary climate** and geographical isolation
+
+::: {.small}
+Supplementary results and discussion (p16)
+:::
+
+- もう一つの可能性：**外来種**の影響？
+
+## 本論文の批判
+
+Qian, H. Reassessing data quality underlying the recently updated floristic map of the world. *Nat Commun* **15**, 3674 (2024). <https://doi.org/10.1038/s41467-024-47543-7>
+
+> Over 200 geographic units included more than 100 non-native genera in each unit
+
+- 「あなた達が使ったデータには外来種の分布がいっぱい入っていて、結果は信頼できない！」
+
+---
+
+![Six examples of genera used in ref. 3 that included abundant non-native (introduced) distributions [@Qian2024a]](images/tamarindus_native_introduced.png)
+
+青はLiu et al. (2023)が使ったデータ、緑は在来の分布、紫は外来の分布
+
+## 批判に対する返事
+
+Liu, Y., Xu, X., Dimitrov, D. *et al*. Reply to: Reassessing data quality underlying the recently updated floristic map of the world. *Nat Commun* **15**, 3673 (2024). <https://doi.org/10.1038/s41467-024-47544-6>
+
+> These results clearly indicate that the proportion of non-native distributions in our database is **not as substantial as suggested** in the Matters Arising
+
+- 「外来種はいくらかあったが、そんなに多くないし、排除しても結果は大きく変わらない」
+
+---
+
+![Floristic realms of the world. Introduced data listed in POWO are removed [@Liu2024]](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-024-47544-6/MediaObjects/41467_2024_47544_Fig1_HTML.png)
+
+---
+
+![@Liu2023a による系統的地域](images/fig_1_map.png){height="250px"}
+
+![@Liu2024 による系統的地域](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-024-47544-6/MediaObjects/41467_2024_47544_Fig1_HTML.png){height="250px"}
+
+## 過去の地域の推測
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- 系統樹の年代推定を行なってから、各年代ごとに切断することによって、過去の地域の分布を推測する
+:::
+
+::: {.column width="50%"}
+![](images/tree_slicer.png)
+
+[@Araujo2024]
+:::
+
+::::
+
+---
+
+![Fig. 2: Chronology of the present-day floristic realms](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig2_HTML.png?as=webp)
+
+## 現在の地域は約8000万年前から
+
+![](images/fig_2_map_80my.png)
+
+## 最も大きな地域は約1億4000万年前から
+
+![](images/fig_2_map_160my.png)
+
+## NZは面白い動きをしている
+
+![Fig. 3: The sequential appearance of the present floristic dissimilarities between different realms evaluated using non-metric multidimensional scaling (NMDS) ordination.](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig3_HTML.png?as=webp)
+
+---
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- 年代ごとに系統樹を切断して、地域間距離を測る
+- 古代（1億8000万年前）には全部似たような起源を持つ
+- どんどん分化していく
+- NZだけは戻る？
+:::
+
+::: {.column width="50%"}
+![Fig. 3: The sequential appearance of the present floristic dissimilarities between different realms evaluated using non-metric multidimensional scaling (NMDS) ordination.](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig3_HTML.png?as=webp)
+:::
+
+::::
+
+
+## 現在の機構はあまり強い影響を持たない
+
+![Fig. 4: Effects of contemporary climate on the phylogenetic beta diversity within and between floristic realms (or clusters of realms).](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig4_HTML.png?as=webp)
+
+---
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- どの地域でもR^2^が30％以下（青、赤）
+- 気候モデルによる地域の差の説明力が特に低い（灰色）
+:::
+
+::: {.column width="50%"}
+![Fig. 4: Effects of contemporary climate on the phylogenetic beta diversity within and between floristic realms (or clusters of realms).](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig4_HTML.png?as=webp)
+:::
+
+::::
+
+# 感想
+
+## よくできたこと
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- 大きなデータセットを用いて、系統的なアプローチと分類学的なアプローチを両方導入した 👍
+
+- 過去の地域の解析が面白かった（特にFig 3） 👍
+:::
+
+::: {.column width="50%"}
+![Fig. 3: The sequential appearance of the present floristic dissimilarities between different realms evaluated using NMDS.](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig3_HTML.png?as=webp)
+:::
+
+::::
+
+## もっと頑張れること
+
+- コードはひどい😩
+- 系統樹にDNAデータのない分類群を貼り付けた（あやしい）🤨
+- 本当に外来種の影響は大丈夫？🧐
+
+## なぜこの論文を選んだ？
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- シダ植物も同様にデータがだいぶ揃っているけど、このような解析はまだされていない
+
+- シダ植物の場合は散布能力が高い（胞子による散布）ので、地域のパターンが違う可能性がある
+:::
+
+::: {.column width="50%"}
+![](https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgFMDMWquXPEvGM_dEt-sFVU7Neck6RGaXkICm_CBkD1EIwy7T4l46hxOnfj5wTCxzv4mtX-ny0zSDLRX0IBzUgwQtbFCVDKwH8I15w06KHrqXd1-mHRfR8ulvHxwtwBnbgHV-d6UIQNWuu/s320/IMG_20200613_204206572.jpg)
+:::
+
+::::
+
+## なぜこの論文を選んだ？
+
+- 生物地域の構造は**単純ではない**
+  - ある地点が**複数の地域**に属することがあってもいいのではないか？
+
+---
+
+![Species motifs for breeding birds. **a** K = 11 motifs [@White2019]](images/white_2019_fig_1.png)
+
+鳥の地域。一見今までの地図と似ている・・
+
+---
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- が、よく見るとぞれぞれの地点は複数の色がついている！
+
+- 地域の境目がはっきりしているのか、そうでもないのか、**見えてくる**
+:::
+
+::: {.column width="50%"}
+![](images/white_2019_fig_1_close.png)
+:::
+
+::::
+
+---
+
+- 最近、@White2019 が新しい手法を導入した：トピックモデル
+  - 実は、前からある**機械学習モデル**だが、通常はテキストデータに使われる
+
+---
+
+![<https://www.nico-soda.jp/blog/post/20210121_000096.html>](https://www.nico-soda.jp/blog/topic_01.png)
+
+---
+
+![<https://www.nico-soda.jp/blog/post/20210121_000096.html>](https://www.nico-soda.jp/blog/topic_02.png)
+
+---
+
+![Illustration of Latent Dirichlet Allocation's (LDA) principle. LDA decomposes a community matrix with discrete abundance information (e.g., read count) into K assemblages based on the co-occurrence of OTUs and the covariance of their abundances across samples [@Sommeria-Klein2020]](images/sommeria-klein_fig_1.png)
+
+## References

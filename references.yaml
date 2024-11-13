@@ -1,0 +1,251 @@
+---
+references:
+- id: Araujo2024
+  accessed:
+    - year: 2024
+      month: 11
+      day: 13
+  author:
+    - family: Araujo
+      given: Matheus L.
+    - family: Gabriel S. S. Ferreira
+      given: Luiz
+    - family: Nakamura
+      given: Gabriel
+    - family: Túlio P. Coelho
+      given: Marco
+    - family: Rangel
+      given: Thiago F.
+  citation-key: Araujo2024
+  container-title: Ecography
+  container-title-short: Ecography
+  DOI: 10.1111/ecog.07364
+  ISSN: 0906-7590, 1600-0587
+  issued:
+    - year: 2024
+      month: 10
+      day: 28
+  language: en
+  page: e07364
+  source: DOI.org (Crossref)
+  title: >-
+    ‘treesliceR': a package for slicing phylogenies and inferring phylogenetic
+    patterns over evolutionary time
+  title-short: ‘treesliceR'
+  type: article-journal
+  URL: https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.07364
+
+- id: Liu2023a
+  accessed:
+    - year: 2024
+      month: 11
+      day: 5
+  author:
+    - family: Liu
+      given: Yunpeng
+    - family: Xu
+      given: Xiaoting
+    - family: Dimitrov
+      given: Dimitar
+    - family: Pellissier
+      given: Loic
+    - family: Borregaard
+      given: Michael K.
+    - family: Shrestha
+      given: Nawal
+    - family: Su
+      given: Xiangyan
+    - family: Luo
+      given: Ao
+    - family: Zimmermann
+      given: Niklaus E.
+    - family: Rahbek
+      given: Carsten
+    - family: Wang
+      given: Zhiheng
+  citation-key: Liu2023a
+  container-title: Nature Communications
+  container-title-short: Nat Commun
+  DOI: 10.1038/s41467-023-38375-y
+  ISSN: 2041-1723
+  issue: '1'
+  issued:
+    - year: 2023
+      month: 5
+      day: 30
+  language: en
+  page: '2990'
+  source: DOI.org (Crossref)
+  title: An updated floristic map of the world
+  type: article-journal
+  URL: https://www.nature.com/articles/s41467-023-38375-y
+  volume: '14'
+
+- id: Liu2024
+  accessed:
+    - year: 2024
+      month: 11
+      day: 13
+  author:
+    - family: Liu
+      given: Yunpeng
+    - family: Xu
+      given: Xiaoting
+    - family: Dimitrov
+      given: Dimitar
+    - family: Rahbek
+      given: Carsten
+    - family: Wang
+      given: Zhiheng
+  citation-key: Liu2024
+  container-title: Nature Communications
+  container-title-short: Nat Commun
+  DOI: 10.1038/s41467-024-47544-6
+  ISSN: 2041-1723
+  issue: '1'
+  issued:
+    - year: 2024
+      month: 5
+      day: 2
+  language: en
+  page: '3673'
+  source: DOI.org (Crossref)
+  title: >-
+    Reply to: Reassessing data quality underlying the recently updated floristic
+    map of the world
+  title-short: Reply to
+  type: article-journal
+  URL: https://www.nature.com/articles/s41467-024-47544-6
+  volume: '15'
+
+- id: Qian2024a
+  accessed:
+    - year: 2024
+      month: 11
+      day: 13
+  author:
+    - family: Qian
+      given: Hong
+  citation-key: Qian2024a
+  container-title: Nature Communications
+  container-title-short: Nat Commun
+  DOI: 10.1038/s41467-024-47543-7
+  ISSN: 2041-1723
+  issue: '1'
+  issued:
+    - year: 2024
+      month: 5
+      day: 2
+  language: en
+  page: '3674'
+  source: DOI.org (Crossref)
+  title: >-
+    Reassessing data quality underlying the recently updated floristic map of
+    the world
+  type: article-journal
+  URL: https://www.nature.com/articles/s41467-024-47543-7
+  volume: '15'
+
+- id: Salazar2015
+  accessed:
+    - year: 2024
+      month: 11
+      day: 13
+  author:
+    - family: Salazar
+      given: Guillem
+    - family: Cornejo‐Castillo
+      given: Francisco M.
+    - family: Borrull
+      given: Encarna
+    - family: Díez‐Vives
+      given: Cristina
+    - family: Lara
+      given: Elena
+    - family: Vaqué
+      given: Dolors
+    - family: Arrieta
+      given: Jesús M.
+    - family: Duarte
+      given: Carlos M.
+    - family: Gasol
+      given: Josep M.
+    - family: Acinas
+      given: Silvia G.
+  citation-key: Salazar2015
+  container-title: Molecular Ecology
+  container-title-short: Molecular Ecology
+  DOI: 10.1111/mec.13419
+  ISSN: 0962-1083, 1365-294X
+  issue: '22'
+  issued:
+    - year: 2015
+      month: 11
+  language: en
+  license: http://onlinelibrary.wiley.com/termsAndConditions#vor
+  page: 5692-5706
+  source: DOI.org (Crossref)
+  title: >-
+    Particle‐association lifestyle is a phylogenetically conserved trait in
+    bathypelagic prokaryotes
+  type: article-journal
+  URL: https://onlinelibrary.wiley.com/doi/10.1111/mec.13419
+  volume: '24'
+
+- id: Sommeria-Klein2020
+  author:
+    - family: Sommeria-Klein
+      given: Guilhem
+    - family: Zinger
+      given: Lucie
+    - family: Coissac
+      given: Eric
+    - family: Iribar
+      given: Amaia
+    - family: Schimann
+      given: Heidy
+    - family: Taberlet
+      given: Pierre
+    - family: Chave
+      given: Jérôme
+  citation-key: Sommeria-Klein2020
+  container-title: Molecular Ecology Resources
+  DOI: 10.1111/1755-0998.13109
+  ISSN: '17550998'
+  issue: '2'
+  issued:
+    - year: 2020
+  page: 371-386
+  title: >-
+    Latent Dirichlet Allocation reveals spatial and taxonomic structure in a
+    DNA-based census of soil biodiversity from a tropical forest
+  type: article-journal
+  volume: '20'
+
+- id: White2019
+  author:
+    - family: White
+      given: Alexander E.
+    - family: Dey
+      given: Kushal K.
+    - family: Mohan
+      given: Dhananjai
+    - family: Stephens
+      given: Matthew
+    - family: Price
+      given: Trevor D.
+  citation-key: White2019
+  container-title: Nature Communications
+  DOI: 10.1038/s41467-019-10253-6
+  ISSN: 2041-1723
+  issue: '1'
+  issued:
+    - year: 2019
+  page: '2646'
+  title: >-
+    Regional influences on community structure across the tropical-temperate
+    divide
+  type: article-journal
+  URL: http://www.nature.com/articles/s41467-019-10253-6
+  volume: '10'
+...

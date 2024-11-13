@@ -1,3 +1,5 @@
 /.quarto/
 index_files
+index_cache
 *.html
+working
