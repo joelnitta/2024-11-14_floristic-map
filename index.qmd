@@ -311,15 +311,65 @@ BG Holt, JP Lessard, MK Borregaard, SA Fritz, MB Araújo, D Dimitrov, et al.
 
 ## 方法
 
-### データ
+### 系統解析
 
+- 8つの遺伝子（核2つ、葉緑体6つ）
+- 属ごとに代表シーケンスを選ぶ
+- 最尤法：RAxML
+- 年代推定：treePL
+- 分子データのない属は分類を用いて加える（**要注意！**）
 
+---
+
+### 分布データ
+
+- 複数のデータ源を使用（フローラ、GBIF、他のデータベース）
+- GSU （Geographic Standard Unit）を定義
+  - 平均面積：4° × 4° （やく 400 km × 400 km）
+
+---
+
+![Fig S2 Geographic Standard Unitの地図](images/fig_s2_gsu_map.png)
+
+---
+
+### シンプソンのβ多様性
+
+$$
+\text{β多様性} = 1 - \frac{a}{a + \min(b, c)}
+$$
+
+- \(a\) は2つのサイトで共通する種の数
+- \(b\) は1つ目のサイトにのみ存在する種の数
+- \(c\) は2つ目のサイトにのみ存在する種の数
+
+（分類学的データおよび系統的データを用いる）
+
+---
+
+### クラスター解析
+
+:::: {.columns}
+
+::: {.column width="30%"}
+- UPGMA（Unweighted Pair Group Means Algorithm）を使用
+:::
+
+::: {.column width="70%"}
+![](https://miro.medium.com/v2/resize:fit:1200/1*uqbsoSxcILTo7t7Q3ct_hg.png)
+:::
+
+::: {.small}
+
+<https://monikammate.medium.com/decoding-evolutionary-paths-a-guide-to-upgma-method-for-constructing-phylogenetic-trees-9934b5d917d7>
+
+:::
+
+::::
 
 # 結果
 
 ## 8つの主な植物地域
-
-
 
 ![](https://media.springernature.com/full/springer-static/image/art%3A10.1038%2Fs41467-023-38375-y/MediaObjects/41467_2023_38375_Fig1_HTML.png)
 
@@ -375,7 +425,7 @@ beta diversity.](images/fig_s_10.png)
 
 ## メキシコについて
 
-- 分類学的地域ではパタゴニアと同一だが、系統的地域では新熱帯区
+- 分類学的地域ではパタゴニアと同一だが、系統的地域では新熱帯区（Neotropics）
   - 著者によれば、**気候**の影響による
 
 > The regionalization based on taxonomic beta diversity may be more strongly influenced by **contemporary climate** and geographical isolation
@@ -398,7 +448,7 @@ Qian, H. Reassessing data quality underlying the recently updated floristic map 
 
 ![Six examples of genera used in ref. 3 that included abundant non-native (introduced) distributions [@Qian2024a]](images/tamarindus_native_introduced.png)
 
-青はLiu et al. (2023)のデータ、緑は在来分布、紫は外来分布
+青はLiu et al. (2023)のデータ、緑は在来分布、紫は**外来分布**
 
 ## 批判に対する返答
 
@@ -458,6 +508,7 @@ Liu, Y., Xu, X., Dimitrov, D. *et al*. Reply to: Reassessing data quality underl
 - 系統樹を切断し、地域間距離を測定
 - 初期の地域は類似性が高い
 - 分化が進行するが、NZのみ異なる？
+  - NZは早くゴンドワナから離れた（100mya）。独特な歴史を辿った？
 :::
 
 ::: {.column width="50%"}
@@ -506,7 +557,27 @@ Liu, Y., Xu, X., Dimitrov, D. *et al*. Reply to: Reassessing data quality underl
 
 ## 改善の余地
 
-- コードが複雑すぎる😩
+:::: {.columns}
+
+::: {.column width="50%"}
+- [コード](https://github.com/yunpengliu1994/regionalization/blob/main/CodeForAllAnalysis.r)がヒドい😩
+  - 全て一つのファイル
+  - データがどこから来るの説明がない
+  - パッケージのバージョンが分からない
+
+:::
+
+::: {.column width="10%"}
+:::
+
+::: {.column width="40%"}
+![](images/code.png){height="600px"}
+:::
+
+::::
+
+## 改善の余地
+
 - 系統樹にDNAデータのない分類群を使用した（あやしい）🤨
 - 外来種の影響は本当に問題ないのか？🧐
 
